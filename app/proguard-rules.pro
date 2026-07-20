@@ -19,3 +19,12 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Reproducible Build
+-dontobfuscate
+-keepclassmembers class kotlinx.coroutines.** {
+    volatile <fields>;
+}
+-keepclassmembers class kotlin.coroutines.SafeContinuation {
+    volatile <fields>;
+}
