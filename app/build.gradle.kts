@@ -1,8 +1,7 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import com.android.build.api.dsl.ApplicationExtension
 
 plugins {
     id("com.android.application")
-    id("kotlin-android")
     id("com.google.devtools.ksp")
     id("org.jetbrains.kotlin.plugin.serialization")
     id("com.mikepenz.aboutlibraries.plugin")
@@ -10,8 +9,8 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
-android {
-    compileSdk = 36
+extensions.configure<ApplicationExtension>  {
+    compileSdk = 37
     androidResources {
         generateLocaleConfig = true
     }
@@ -21,7 +20,7 @@ android {
         versionName = "1.11.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        targetSdk = 36
+        targetSdk = 37
         minSdk = 28
     }
     buildFeatures {
@@ -58,22 +57,16 @@ android {
     namespace = "ru.karasevm.privatednstoggle"
 }
 
-kotlin {
-    compilerOptions {
-        jvmTarget = JvmTarget.JVM_17
-    }
-}
-
 dependencies {
-    implementation("androidx.core:core-ktx:1.17.0")
+    implementation("androidx.core:core-ktx:1.19.0")
     implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("androidx.recyclerview:recyclerview:1.4.0")
-    implementation("androidx.activity:activity-ktx:1.12.2")
+    implementation("androidx.activity:activity-ktx:1.13.0")
     implementation("androidx.fragment:fragment-ktx:1.8.9")
-    implementation("com.google.android.material:material:1.13.0")
+    implementation("com.google.android.material:material:1.14.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
-    implementation("com.google.guava:guava:33.5.0-android")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+    implementation("com.google.guava:guava:33.6.0-android")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
 
     val shizukuVersion = "13.1.5"
     implementation("dev.rikka.shizuku:api:$shizukuVersion")
@@ -89,24 +82,24 @@ dependencies {
     androidTestImplementation("androidx.room:room-testing:$roomVersion")
 
     // Lifecycle components
-    val lifecycleVersion = "2.10.0"
+    val lifecycleVersion = "2.11.0"
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion")
 
     // Compose
-    val composeBom = platform("androidx.compose:compose-bom:2025.05.00")
+    val composeBom = platform("androidx.compose:compose-bom:2026.06.01")
     implementation(composeBom)
     androidTestImplementation(composeBom)
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.ui:ui-tooling-preview")
     debugImplementation("androidx.compose.ui:ui-tooling")
-    implementation("androidx.activity:activity-compose:1.12.2")
+    implementation("androidx.activity:activity-compose:1.13.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
-    implementation("androidx.compose.runtime:runtime-livedata")
+    implementation("androidx.compose.runtime:runtime-livedata:1.11.4")
 
 
-    val latestAboutLibsRelease = "13.2.1"
+    val latestAboutLibsRelease = "15.0.4"
     implementation("com.mikepenz:aboutlibraries-core:$latestAboutLibsRelease")
     implementation("com.mikepenz:aboutlibraries-compose-m3:${latestAboutLibsRelease}")
 
